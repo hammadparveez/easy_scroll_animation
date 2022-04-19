@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: EasyAnimatedScroll(
+        topCurve: Curves.bounceIn,
+        bottomCurve: Curves.bounceOut,
+        bottomAnimationDuration: const Duration(seconds: 1),
+        topAnimationDuration: const Duration(seconds: 1),
         bottomWidget: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
                 label: "Location", icon: Icon(Icons.location_city)),
           ],
         ),
+        topWidget: AppBar(title: Text("Welcome")),
         child: ListView.builder(
           shrinkWrap: true,
           padding: const EdgeInsets.all(0),

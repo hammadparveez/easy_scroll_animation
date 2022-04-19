@@ -74,13 +74,13 @@ class _HPScrollAnimationState extends State<EasyAnimatedScroll> {
         onNotification: _onAnimate,
         child: Column(
           children: [
-            _TopBarAnimation(
+            if (widget.topWidget != null)
+              _TopBarAnimation(
                 key: _topController,
                 animationCurve: widget.topCurve,
                 animationDuration: widget.topAnimationDuration,
-                child: AppBar(
-                  title: Text("Hammad"),
-                )),
+                child: widget.topWidget!,
+              ),
             Expanded(child: widget.child),
           ],
         ),
