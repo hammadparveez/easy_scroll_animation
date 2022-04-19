@@ -1,39 +1,47 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Easy Scroll Animation
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+## Easy Scroll Animation is very simple to use
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+![f3af61ac-539a-4ca9-935e-7bafe407d542](https://user-images.githubusercontent.com/33895363/164036173-cc3bdc60-b40d-4f2a-86b9-dd3653e95164.gif)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+### Installation
 
-## Features
+#### Step 1:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```yml
+easy_scroll_animation: <latest-version>
 ```
 
-## Additional information
+#### Step 2:
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+import 'package:easy_scroll_animation/easy_scroll_animation.dart';
+```
+
+#### Step 3: How to use
+
+```dart
+EasyAnimatedScroll(
+        bottomWidget: //(Optional) e.g: BottomNavigationBar , bottom Widget that you want to hide on scroll
+        topWidget: topWidget  //(Optional) e.g Appbar , top widget that you want to hide on scroll
+        child: yourScrollingWidget //e.g: ListView/ListView.builder or any other scrolling widget
+    ),
+```
+
+##### Paramaters
+
+<b> Scrolling Content </b>
+
+- child (required)
+
+<b> Bottom Bar Widget </b>
+
+- bottomWidget (optional)
+- bottomAnimationDuration (default: 500milliseconds)
+- bottomCurve (defualt: linear)
+
+<b> Top Bar Widget </b>
+
+- topWidget (optional)
+- topAnimationDuration (default: 500milliseconds)
+- topCurve (defualt: linear)

@@ -1,7 +1,7 @@
 name: easy_scroll_animation
-description: Animates widget as you start scrolling.
+description: Animating widget on scrolling
 version: 1.0.0
-homepage:
+homepage: https://github.com/hammadpervez/easy_scroll_animation
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
