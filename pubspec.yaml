@@ -1,6 +1,6 @@
 name: easy_scroll_animation
-description: Animating widget on scrolling by Hammad Parveez
-version: 1.0.1
+description: Easy Scroll Animation lets you optionally hide and animation Topbar (e.g AppBar), BottomBar (e.g BottomNavigationBar)
+version: 1.0.2
 homepage: https://github.com/hammadpervez/easy_scroll_animation
 
 environment:
