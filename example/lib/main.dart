@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         bottomCurve: Curves.bounceOut,
         bottomAnimationDuration: const Duration(seconds: 1),
         topAnimationDuration: const Duration(seconds: 1),
+        animateBottomWidget: false,
         bottomWidget: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(

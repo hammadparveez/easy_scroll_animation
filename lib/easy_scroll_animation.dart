@@ -6,11 +6,14 @@ class EasyAnimatedScroll extends StatefulWidget {
   final Curve topCurve, bottomCurve;
   final Widget child;
   final Widget? topWidget, bottomWidget;
+  final bool animateTopWidget, animateBottomWidget;
   const EasyAnimatedScroll(
       {Key? key,
       required this.child,
       this.topWidget,
       this.bottomWidget,
+      this.animateTopWidget = true,
+      this.animateBottomWidget = true,
       this.topAnimationDuration = const Duration(milliseconds: 500),
       this.bottomAnimationDuration = const Duration(milliseconds: 500),
       this.topCurve = Curves.linear,
@@ -50,13 +53,21 @@ class _HPScrollAnimationState extends State<EasyAnimatedScroll> {
   }
 
   _animateForward() {
-    _topController.currentState?.animateForward();
-    _bottomController.currentState?.animateForward();
+    if (widget.animateTopWidget) {
+      _topController.currentState?.animateForward();
+    }
+    if (widget.animateBottomWidget) {
+      _bottomController.currentState?.animateForward();
+    }
   }
 
   _animatedReverse() {
-    _topController.currentState?.animateReverse();
-    _bottomController.currentState?.animateReverse();
+    if (widget.animateTopWidget) {
+      _topController.currentState?.animateReverse();
+    }
+    if (widget.animateBottomWidget) {
+      _bottomController.currentState?.animateReverse();
+    }
   }
 
   @override
