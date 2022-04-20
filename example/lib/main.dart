@@ -16,10 +16,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: EasyAnimatedScroll(
-        topCurve: Curves.bounceIn,
+        topCurve: Curves.linear,
         bottomCurve: Curves.bounceOut,
         bottomAnimationDuration: const Duration(seconds: 1),
         topAnimationDuration: const Duration(seconds: 1),
+        animationTopType: AnimationType.scale,
         animateBottomWidget: false,
         bottomWidget: BottomNavigationBar(
           items: const [

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+enum AnimationType { scale, size, fade }
+
 class EasyAnimatedScroll extends StatefulWidget {
   final Duration topAnimationDuration, bottomAnimationDuration;
   final Curve topCurve, bottomCurve;
   final Widget child;
   final Widget? topWidget, bottomWidget;
   final bool animateTopWidget, animateBottomWidget;
+  final AnimationType animationTopType, animationBottomType;
   const EasyAnimatedScroll(
       {Key? key,
       required this.child,
@@ -14,6 +17,8 @@ class EasyAnimatedScroll extends StatefulWidget {
       this.bottomWidget,
       this.animateTopWidget = true,
       this.animateBottomWidget = true,
+      this.animationTopType = AnimationType.size,
+      this.animationBottomType = AnimationType.size,
       this.topAnimationDuration = const Duration(milliseconds: 500),
       this.bottomAnimationDuration = const Duration(milliseconds: 500),
       this.topCurve = Curves.linear,
@@ -75,6 +80,7 @@ class _HPScrollAnimationState extends State<EasyAnimatedScroll> {
     return Scaffold(
       bottomNavigationBar: widget.bottomWidget != null
           ? _BottomBarAnimation(
+              animationType: widget.animationBottomType,
               key: _bottomController,
               child: widget.bottomWidget!,
               animationCurve: widget.bottomCurve,
@@ -87,6 +93,7 @@ class _HPScrollAnimationState extends State<EasyAnimatedScroll> {
           children: [
             if (widget.topWidget != null)
               _TopBarAnimation(
+                animationType: widget.animationTopType,
                 key: _topController,
                 animationCurve: widget.topCurve,
                 animationDuration: widget.topAnimationDuration,
@@ -105,11 +112,13 @@ class _TopBarAnimation extends StatefulWidget {
       {Key? key,
       required this.child,
       this.animationCurve = Curves.linear,
+      this.animationType = AnimationType.size,
       this.animationDuration = const Duration(milliseconds: 500)})
       : super(key: key);
   final Widget child;
   final Duration animationDuration;
   final Curve animationCurve;
+  final AnimationType animationType;
   @override
   State<_TopBarAnimation> createState() => _TopBarAnimationState();
 }
@@ -137,7 +146,13 @@ class _TopBarAnimationState extends State<_TopBarAnimation>
   animateReverse() => _controller.reverse();
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(sizeFactor: _animation, child: widget.child);
+    if (widget.animationType == AnimationType.scale) {
+      return ScaleTransition(scale: _animation, child: widget.child);
+    } else if (widget.animationType == AnimationType.fade) {
+      return FadeTransition(opacity: _animation, child: widget.child);
+    } else {
+      return SizeTransition(sizeFactor: _animation, child: widget.child);
+    }
   }
 }
 
@@ -146,11 +161,13 @@ class _BottomBarAnimation extends StatefulWidget {
       {Key? key,
       required this.child,
       this.animationCurve = Curves.linear,
+      this.animationType = AnimationType.size,
       this.animationDuration = const Duration(milliseconds: 500)})
       : super(key: key);
   final Widget child;
   final Duration animationDuration;
   final Curve animationCurve;
+  final AnimationType animationType;
   @override
   State<_BottomBarAnimation> createState() => _BottomBarAnimationState();
 }
@@ -179,6 +196,12 @@ class _BottomBarAnimationState extends State<_BottomBarAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(sizeFactor: _animation, child: widget.child);
+    if (widget.animationType == AnimationType.scale) {
+      return ScaleTransition(scale: _animation, child: widget.child);
+    } else if (widget.animationType == AnimationType.fade) {
+      return FadeTransition(opacity: _animation, child: widget.child);
+    } else {
+      return SizeTransition(sizeFactor: _animation, child: widget.child);
+    }
   }
 }
